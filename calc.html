@@ -41,48 +41,76 @@
         </main>
     </div>
     
-    <!-- Hidden Interface (Revealed after trigger) -->
+    <!-- Hidden Interface (Revealed after trigger) - Instagram Style -->
     <div id="private-interface" class="hidden-layer">
-        <div class="private-container">
-            <div class="private-sidebar">
-                <div class="connection-status">
-                    <div class="pulse-indicator online"></div>
-                    <span>5TB Connection Active</span>
-                </div>
-                
-                <div class="assistant-info">
-                    <div class="assistant-avatar">🤖</div>
-                    <div class="assistant-details">
-                        <h4>System Assistant</h4>
-                        <span class="status-online">Always Online</span>
+        <div class="insta-container">
+            <!-- Stories Sidebar (Left) -->
+            <div class="insta-sidebar">
+                <!-- Current User Header -->
+                <div class="current-user-header">
+                    <img id="current-user-avatar" src="https://ui-avatars.com/api/?name=User&background=random" class="current-avatar" alt="Me">
+                    <div class="current-user-info">
+                        <div id="current-user-name" class="current-name">You</div>
+                        <div class="current-status">
+                            <span class="pulse-dot online"></span>
+                            Active now
+                        </div>
                     </div>
                 </div>
                 
-                <div class="search-container">
-                    <div class="search-trigger" id="search-trigger">🔍</div>
-                    <div class="search-input-wrapper" id="search-input-wrapper">
-                        <input type="text" id="private-search" placeholder="Search...">
+                <!-- Connection Status -->
+                <div class="vault-status">
+                    <div class="status-icon">🔒</div>
+                    <div class="status-text">
+                        <div class="status-title">5TB Vault</div>
+                        <div class="status-subtitle">Secure • Connected</div>
                     </div>
                 </div>
                 
-                <div class="contact-list" id="contact-list">
-                    <!-- Contacts loaded dynamically -->
+                <!-- Stories / Online Users -->
+                <div class="stories-section">
+                    <div class="stories-header">
+                        <h4>Online Now</h4>
+                        <span class="online-count" id="online-count">0</span>
+                    </div>
+                    <div class="stories-list" id="contact-list">
+                        <!-- Stories loaded dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Search -->
+                <div class="sidebar-search">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" id="private-search" placeholder="Search messages...">
                 </div>
             </div>
             
-            <div class="private-main">
+            <!-- Main Chat Area (Right) -->
+            <div class="insta-main">
+                <!-- Chat Header (Long press for settings) -->
                 <div class="chat-header">
-                    <h3>Secure Communication</h3>
-                    <div class="encryption-badge">🔒 Encrypted</div>
+                    <div class="chat-header-info">
+                        <h3>Secure Channel</h3>
+                        <span class="header-subtitle">End-to-end encrypted</span>
+                    </div>
+                    <div class="chat-header-actions">
+                        <button class="header-btn" id="search-trigger">🔍</button>
+                        <button class="header-btn" id="info-trigger">ℹ️</button>
+                    </div>
                 </div>
                 
+                <!-- Messages Area -->
                 <div class="chat-messages" id="chat-messages">
                     <!-- Messages appear here -->
                 </div>
                 
-                <div class="chat-input-area">
-                    <input type="text" id="chat-input" placeholder="Enter secure message..." maxlength="1000">
-                    <button id="chat-send" class="send-btn">➤</button>
+                <!-- Input Area -->
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <button id="chat-attachment" class="attachment-btn">📎</button>
+                        <input type="text" id="chat-input" placeholder="Message..." maxlength="1000" autocomplete="off">
+                        <button id="chat-send" class="send-btn">➤</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,6 +121,8 @@
     <script src="config.js"></script>
     <script src="auth-mirage.js"></script>
     <script src="sync.js"></script>
+    <script src="session.js"></script>
+    <script src="chat.js"></script>
     <script src="calc.js"></script>
 </body>
 </html>

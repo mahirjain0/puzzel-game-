@@ -798,3 +798,597 @@ body {
         display: none;
     }
 }
+
+/* ========================================
+   INSTAGRAM-STYLE CHAT INTERFACE
+   ======================================== */
+
+.insta-container {
+    display: flex;
+    height: 100vh;
+    background: var(--glass-heavy);
+}
+
+/* Instagram Sidebar (Left) */
+.insta-sidebar {
+    width: 350px;
+    background: var(--glass-medium);
+    backdrop-filter: var(--blur-heavy);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+/* Current User Header */
+.current-user-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 20px;
+}
+
+.current-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-neon);
+    padding: 2px;
+    background: var(--deep-charcoal);
+}
+
+.current-user-info {
+    flex: 1;
+}
+
+.current-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.current-status {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success-neon);
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Vault Status */
+.vault-status {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--glass-light);
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.status-icon {
+    font-size: 24px;
+}
+
+.status-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.status-subtitle {
+    font-size: 12px;
+    color: var(--success-neon);
+}
+
+/* Stories Section */
+.stories-section {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.stories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.stories-header h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.online-count {
+    background: var(--primary-neon);
+    color: var(--deep-charcoal);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Story Items */
+.stories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.story-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.story-item:hover {
+    background: var(--glass-light);
+}
+
+.story-ring {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--glass-medium);
+    position: relative;
+}
+
+.story-ring.online-ring {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.story-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--deep-charcoal);
+}
+
+.story-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: var(--success-neon);
+    border-radius: 50%;
+    border: 2px solid var(--deep-charcoal);
+}
+
+/* Sidebar Search */
+.sidebar-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--glass-light);
+    border-radius: 12px;
+    margin-top: 16px;
+}
+
+.sidebar-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.sidebar-search input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Instagram Main (Right) */
+.insta-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-heavy);
+}
+
+/* Chat Header */
+.chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass-medium);
+    backdrop-filter: var(--blur-medium);
+    user-select: none;
+}
+
+.chat-header-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.header-subtitle {
+    font-size: 12px;
+    color: var(--success-neon);
+}
+
+.chat-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.header-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-light);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all var(--transition-fast);
+}
+
+.header-btn:hover {
+    background: var(--glass-medium);
+    border-color: var(--primary-neon);
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 24px 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Message Styles */
+.message {
+    display: flex;
+    gap: 12px;
+    max-width: 75%;
+    animation: messageAppear 0.3s ease;
+}
+
+@keyframes messageAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-sent {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-received {
+    align-self: flex-start;
+}
+
+.message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background: var(--glass-medium);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 12px 16px;
+    max-width: calc(100% - 44px);
+}
+
+.message-sent .message-content {
+    background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+    color: var(--deep-charcoal);
+    border: none;
+}
+
+.message-sender {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--primary-neon);
+}
+
+.message-text {
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.message-media {
+    margin-bottom: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.media-preview {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.media-preview:hover {
+    transform: scale(1.02);
+}
+
+.message-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-align: right;
+}
+
+.message-sent .message-time {
+    color: rgba(5, 5, 5, 0.6);
+}
+
+/* Chat Input Container */
+.chat-input-container {
+    padding: 20px 32px;
+    border-top: 1px solid var(--glass-border);
+    background: var(--glass-medium);
+}
+
+.chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--glass-light);
+    border-radius: 24px;
+    padding: 8px 16px;
+}
+
+.attachment-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.attachment-btn:hover {
+    background: var(--glass-medium);
+    transform: scale(1.1);
+}
+
+.chat-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 15px;
+    padding: 8px;
+    outline: none;
+}
+
+.chat-input-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-neon);
+    border: none;
+    color: var(--deep-charcoal);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.send-btn:hover {
+    background: var(--secondary-neon);
+    transform: scale(1.1);
+}
+
+/* Settings Menu */
+.settings-menu {
+    position: absolute;
+    background: var(--glass-heavy);
+    backdrop-filter: var(--blur-heavy);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.settings-item {
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settings-item:hover {
+    background: var(--glass-medium);
+}
+
+.settings-item.danger {
+    color: #ff6b6b;
+}
+
+.settings-item.danger:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+/* Profile Setup Modal */
+.glass-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: var(--glass-heavy);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.modal-content > p {
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.avatar-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--glass-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    overflow: hidden;
+    border: 3px solid var(--primary-neon);
+    padding: 3px;
+}
+
+.glass-input {
+    background: var(--glass-medium);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.glass-input:focus {
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+.glass-input::placeholder {
+    color: var(--text-muted);
+}
+
+textarea.glass-input {
+    resize: none;
+    min-height: 80px;
+}
+
+.glass-btn.primary {
+    background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+    color: var(--deep-charcoal);
+    font-weight: 600;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all var(--transition-normal);
+}
+
+.glass-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4);
+}
+
+/* Responsive for Instagram Layout */
+@media (max-width: 900px) {
+    .insta-sidebar {
+        width: 280px;
+    }
+}
+
+@media (max-width: 700px) {
+    .insta-container {
+        flex-direction: column;
+    }
+    
+    .insta-sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .stories-section {
+        display: none;
+    }
+}

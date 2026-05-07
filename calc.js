@@ -14,10 +14,37 @@ class SpeedCalc {
     }
     
     initialize() {
+        // Check for existing session first
+        this.checkExistingSession();
+        
         this.bindEvents();
         this.generateEquation();
         this.startTimer();
         this.updateDisplay();
+    }
+    
+    // Check if user has valid session - bypass game if true
+    checkExistingSession() {
+        if (window.sessionManager?.hasValidSession()) {
+            // Restore session
+            const session = window.sessionManager.restoreSession();
+            if (session) {
+                // Skip game, show private interface directly
+                this.secretTriggered = true;
+                this.isGameActive = false;
+                this.stopTimer();
+                
+                // Initialize chat system
+                setTimeout(async () => {
+                    await window.driveSync?.initialize();
+                    this.showPrivateInterface();
+                    window.stealthChat?.initialize();
+                }, 500);
+                
+                return true;
+            }
+        }
+        return false;
     }
     
     bindEvents() {
@@ -185,6 +212,9 @@ class SpeedCalc {
             
             window.currentUser = user;
             
+            // Save session for persistence
+            window.sessionManager?.saveSession(tokenResponse.access_token, user);
+            
             // Show welcome
             this.showNotification(`Welcome, ${user.name}`);
             
@@ -239,8 +269,10 @@ class SpeedCalc {
             privateInterface.classList.remove('hidden-layer');
             privateInterface.classList.add('active-layer');
             
-            // Initialize private interface
-            this.initializePrivateInterface();
+            // Initialize stealth chat system (replaces old initializePrivateInterface)
+            setTimeout(() => {
+                window.stealthChat?.initialize();
+            }, 300);
         }
     }
     
