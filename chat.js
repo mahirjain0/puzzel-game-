@@ -91,6 +91,11 @@ class StealthChat {
         // Media attachment
         this.elements.attachmentBtn?.addEventListener('click', () => this.handleMediaUpload());
         
+        // Profile Settings button
+        document.getElementById('profile-settings-btn')?.addEventListener('click', () => {
+            this.showProfileSetupModal();
+        });
+        
         // Hidden settings (long press on header)
         const header = document.querySelector('.chat-header');
         if (header) {
@@ -103,15 +108,15 @@ class StealthChat {
         }
     }
     
-    // REAL-TIME SYNC (5-second polling)
+    // REAL-TIME SYNC (3-second pulse polling)
     startRealtimeSync() {
         // Initial sync
         this.syncMessages();
         
-        // Poll every 5 seconds
+        // Poll every 3 seconds for faster real-time feel
         this.pollingInterval = setInterval(() => {
             this.syncMessages();
-        }, 5000);
+        }, 3000);
         
         // Also sync user list every 10 seconds
         setInterval(() => {
@@ -342,18 +347,31 @@ class StealthChat {
     renderUserList(users) {
         if (!this.elements.userList) return;
         
-        this.elements.userList.innerHTML = users.map(user => {
+        // Add Luna Alpha Bot as first contact for testing
+        const lunaBot = {
+            email: 'luna-alpha@system.local',
+            displayName: 'Luna Alpha',
+            profilePicture: null,
+            isOnline: true,
+            isBot: true
+        };
+        
+        const allUsers = [lunaBot, ...users];
+        
+        this.elements.userList.innerHTML = allUsers.map(user => {
             const avatar = user.profilePicture || 
                           `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email)}&background=random`;
             const isOnline = user.isOnline;
+            const isBot = user.isBot;
             
             return `
-                <div class="story-item ${isOnline ? 'online' : ''}" data-email="${user.email}">
-                    <div class="story-ring ${isOnline ? 'online-ring' : ''}">
+                <div class="story-item ${isOnline ? 'online' : ''} ${isBot ? 'bot-contact' : ''}" data-email="${user.email}">
+                    <div class="story-ring ${isOnline ? 'online-ring' : ''} ${isBot ? 'bot-ring' : ''}">
                         <img src="${avatar}" class="story-avatar" alt="${user.displayName || user.email}">
+                        ${isBot ? '<div class="bot-badge">🤖</div>' : ''}
                     </div>
                     <div class="story-name">${this.escapeHtml(user.displayName || user.email.split('@')[0])}</div>
-                    ${isOnline ? '<div class="online-indicator"></div>' : ''}
+                    ${isOnline && !isBot ? '<div class="online-indicator"></div>' : ''}
                 </div>
             `;
         }).join('');

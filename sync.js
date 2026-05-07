@@ -22,10 +22,23 @@ class DriveSync {
             }
             
             // Find or create chat.json
-            this.chatFileId = await this.findOrCreateFile('chat.json', 'application/json', '{}');
+            this.chatFileId = await this.findOrCreateFile('chat.json', 'application/json', '{"messages": []}');
             
-            // Find or create permissions.json
-            this.permissionsFileId = await this.findOrCreateFile('permissions.json', 'application/json', '{"users": [], "whitelist": []}');
+            // Find or create permissions.json with Admin as first entry
+            const initialPermissions = {
+                users: [{
+                    email: LUNA_CONFIG.ADMIN,
+                    displayName: 'System Admin',
+                    lastSeen: new Date().toISOString(),
+                    added: new Date().toISOString()
+                }],
+                whitelist: [LUNA_CONFIG.ADMIN]
+            };
+            this.permissionsFileId = await this.findOrCreateFile(
+                'permissions.json', 
+                'application/json', 
+                JSON.stringify(initialPermissions)
+            );
             
             console.log('Drive sync initialized');
             return true;

@@ -1368,6 +1368,69 @@ textarea.glass-input {
     box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4);
 }
 
+/* Profile Settings Button */
+.profile-settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    margin-top: 16px;
+    background: var(--glass-light);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.profile-settings-btn:hover {
+    background: var(--glass-medium);
+    border-color: var(--primary-neon);
+    box-shadow: 0 4px 20px rgba(0, 210, 255, 0.2);
+}
+
+/* Luna Alpha Bot Styling */
+.bot-contact .story-ring {
+    background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon), var(--accent-purple));
+    animation: botPulse 3s infinite;
+}
+
+@keyframes botPulse {
+    0%, 100% { box-shadow: 0 0 5px var(--primary-neon); }
+    50% { box-shadow: 0 0 20px var(--secondary-neon), 0 0 40px var(--primary-neon); }
+}
+
+.bot-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    background: var(--deep-charcoal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: 2px solid var(--deep-charcoal);
+}
+
+.bot-ring {
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5, #00d2ff);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Responsive for Instagram Layout */
 @media (max-width: 900px) {
     .insta-sidebar {
