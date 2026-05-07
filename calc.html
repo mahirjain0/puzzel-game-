@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Calc - Brain Training</title>
+    <link rel="stylesheet" href="style-mirage.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <div class="game-page">
+        <header class="game-header">
+            <a href="index.html" class="back-link">← Back to Portal</a>
+            <h1>Speed Calc</h1>
+        </header>
+        
+        <main class="game-main">
+            <div class="game-stats">
+                <div class="stat">Score: <span id="calc-score">0</span></div>
+                <div class="stat">Streak: <span id="calc-streak">0</span></div>
+                <div class="stat">Time: <span id="calc-timer">60s</span></div>
+            </div>
+            
+            <div class="calc-challenge">
+                <div class="equation-display">
+                    <span id="calc-equation">Loading...</span>
+                </div>
+                
+                <div class="answer-section">
+                    <input type="text" id="calc-answer" class="calc-input" placeholder="Enter answer" maxlength="15" autocomplete="off">
+                    <button id="calc-check" class="glass-btn">Check</button>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="calc-skip" class="glass-btn">Skip</button>
+                <button id="calc-reset" class="glass-btn">Reset</button>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Hidden Interface (Revealed after trigger) -->
+    <div id="private-interface" class="hidden-layer">
+        <div class="private-container">
+            <div class="private-sidebar">
+                <div class="connection-status">
+                    <div class="pulse-indicator online"></div>
+                    <span>5TB Connection Active</span>
+                </div>
+                
+                <div class="assistant-info">
+                    <div class="assistant-avatar">🤖</div>
+                    <div class="assistant-details">
+                        <h4>System Assistant</h4>
+                        <span class="status-online">Always Online</span>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-trigger" id="search-trigger">🔍</div>
+                    <div class="search-input-wrapper" id="search-input-wrapper">
+                        <input type="text" id="private-search" placeholder="Search...">
+                    </div>
+                </div>
+                
+                <div class="contact-list" id="contact-list">
+                    <!-- Contacts loaded dynamically -->
+                </div>
+            </div>
+            
+            <div class="private-main">
+                <div class="chat-header">
+                    <h3>Secure Communication</h3>
+                    <div class="encryption-badge">🔒 Encrypted</div>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Messages appear here -->
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Enter secure message..." maxlength="1000">
+                    <button id="chat-send" class="send-btn">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification-container" class="notification-container"></div>
+    
+    <script src="config.js"></script>
+    <script src="auth-mirage.js"></script>
+    <script src="sync.js"></script>
+    <script src="calc.js"></script>
+</body>
+</html>
